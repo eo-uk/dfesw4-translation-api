@@ -1,0 +1,13 @@
+package com.qa.dfesw4translationapi.entities;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface WordPairRepository extends JpaRepository<WordPair, Integer> {
+	List<WordPair> findWordPairByLanguage1Word(String word);
+	List<WordPair> findWordPairByLanguage2Word(String word);
+	List<WordPair> findWordPairByField(String field);
+}
