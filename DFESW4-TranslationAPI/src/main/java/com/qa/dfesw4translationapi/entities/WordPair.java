@@ -34,4 +34,19 @@ public class WordPair {
 	@Column
 	private String dateCreated = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 	
+	public WordPair() {
+		
+	}
+
+	public WordPair(int id, String language1, String language1Word, String language2, String language2Word,
+			String field, String dateCreated) {
+		super();
+		this.id = id;
+		this.language1 = language1;
+		this.language1Word = language1Word;
+		this.language2 = language2;
+		this.language2Word = language2Word;
+		this.field = field;
+		this.dateCreated = dateCreated;
+	}
 }
