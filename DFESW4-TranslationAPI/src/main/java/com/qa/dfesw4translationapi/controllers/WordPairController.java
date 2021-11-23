@@ -55,33 +55,30 @@ public class WordPairController {
 			@PathVariable int id
 	) {
 		service.updateWord(newWordPair, id);
-		HashMap<String, String> response = new HashMap<String, String>();
-		response.put("message", "success");
-		return response;
+		return getResponseSuccess();
 	}
 	
 	@PostMapping("/words/add")
 	public HashMap<String, String> addWord(@RequestBody WordPair word) {
 		service.createWord(word);
-		HashMap<String, String> response = new HashMap<String, String>();
-		response.put("message", "success");
-	    return response;
+		return getResponseSuccess();
 	}
 	
 	@DeleteMapping("/words/delete/{id}")
 	public HashMap<String, String> deleteWordById(@PathVariable int id) {
 		service.deleteWordById(id);
-		HashMap<String, String> response = new HashMap<String, String>();
-		response.put("message", "success");
-	    return response;
+		return getResponseSuccess();
 	}
 	
 	@DeleteMapping("/words/delete/all")
 	public HashMap<String, String> deleteAllWords() {
 		service.deleteAllWords();
+	    return getResponseSuccess();
+	}
+	
+	private HashMap<String, String> getResponseSuccess() {
 		HashMap<String, String> response = new HashMap<String, String>();
 		response.put("message", "success");
 	    return response;
 	}
-	
 }
