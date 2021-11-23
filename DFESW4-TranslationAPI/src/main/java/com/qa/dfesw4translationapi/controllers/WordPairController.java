@@ -69,13 +69,19 @@ public class WordPairController {
 	}
 	
 	@DeleteMapping("/words/delete/{id}")
-	void deleteWordById(@PathVariable int id) {
+	public HashMap<String, String> deleteWordById(@PathVariable int id) {
 		service.deleteWordById(id);
+		HashMap<String, String> response = new HashMap<String, String>();
+		response.put("message", "success");
+	    return response;
 	}
 	
 	@DeleteMapping("/words/delete/all")
-	void deleteAllWords() {
+	public HashMap<String, String> deleteAllWords() {
 		service.deleteAllWords();
+		HashMap<String, String> response = new HashMap<String, String>();
+		response.put("message", "success");
+	    return response;
 	}
 	
 }
