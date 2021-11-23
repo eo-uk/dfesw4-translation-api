@@ -41,4 +41,35 @@ public class WordPairService {
 		results.addAll(repo.findWordPairByLanguage2(language));
 		return results;
 	}
+	
+	public boolean createWord(WordPair word) {
+		this.repo.save(word);
+		return true;
+	}
+	
+	public boolean updateWord( WordPair newWordPair, int id) {
+		this.repo.findById(id)
+				.map(pair -> {
+						pair.setLanguage1(newWordPair.getLanguage1());
+						pair.setLanguage1Word(newWordPair.getLanguage1Word());
+						pair.setLanguage2(newWordPair.getLanguage2());
+						pair.setLanguage2Word(newWordPair.getLanguage2Word());
+						pair.setField(newWordPair.getField());
+						pair.setDateCreated(newWordPair.getDateCreated());
+						return this.repo.save(pair);
+					}
+				)
+				.orElseThrow(EntityNotFoundException::new);
+		return true;
+	}
+	
+	public boolean deleteWordById(int id) {
+		this.repo.deleteById(id);
+		return true;
+	}
+	
+	public boolean deleteAllWords() {
+		this.repo.deleteAll();
+		return true;
+	}
 }
