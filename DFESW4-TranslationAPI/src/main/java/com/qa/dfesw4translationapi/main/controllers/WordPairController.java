@@ -64,11 +64,11 @@ public class WordPairController {
 	@GetMapping("/text/translate")
 	public HashMap<String, String> translateText(
 			@RequestParam String text,
-			@RequestParam String language1,
-			@RequestParam String language2,
+			@RequestParam String sourceLang,
+			@RequestParam String targetLang,
 			@RequestParam(required = false) String field
 	) {
-		return service.translateText(text, language1, language2, field);
+		return service.translateText(text, sourceLang, targetLang, field);
 	}
 	
 	@PutMapping("/words/update/{id}")

@@ -108,14 +108,14 @@ public class WordPairService {
 	
 	public HashMap<String, String> translateText(
 			String text,
-			String language1,
-			String language2,
+			String sourceLang,
+			String targetLang,
 			@Nullable String field
 	) {
 		String source = text;
 		
-		List<WordPair> pairs = this.repo.findWordPairByLanguage1AndLanguage2(language1, language2);
-		pairs.addAll(this.repo.findWordPairByLanguage2AndLanguage1(language1, language2));
+		List<WordPair> pairs = this.repo.findWordPairByLanguage1AndLanguage2(sourceLang, targetLang);
+		pairs.addAll(this.repo.findWordPairByLanguage2AndLanguage1(sourceLang, targetLang));
 		
 		// If specific field is set, go through that field's word pairs first
 		if (field != null) {
