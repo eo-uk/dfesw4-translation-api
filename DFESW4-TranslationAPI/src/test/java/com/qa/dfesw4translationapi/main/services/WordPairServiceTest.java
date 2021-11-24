@@ -74,7 +74,7 @@ public class WordPairServiceTest {
 	}
 	
 	@Test
-	public void getWordsByWord() {
+	public void getWordsByWordTest() {
 		WordPair pair1 = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
 		WordPair pair2 = new WordPair(2, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
 		List<WordPair> expected = new ArrayList<>();
