@@ -1,5 +1,6 @@
 package com.qa.dfesw4translationapi.main.services;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,8 +80,7 @@ public class WordPairService {
 			String word,
 			@Nullable String sourceLang,
 			@Nullable String targetLang,
-			@Nullable String field,
-			@Nullable String order
+			@Nullable String field
 	) {
 		List<WordPair> results = this.getWordsByWord(word);
 		if (field != null) {
@@ -100,40 +100,28 @@ public class WordPairService {
 				    		|| pair.getLanguage2().equals(targetLang))
 				    .collect(Collectors.toList());
 		}
-		if (order != null) {
-			// TODO: Alphabetically (word), Alphabetically (sourceLang), Chronologically, 
-		}
 		return results;
 	}
 	
-	public HashMap<String, String> translateText(
+	public String translateText(
 			String text,
 			String sourceLang,
 			String targetLang,
 			@Nullable String field
 	) {
-		String source = text;
-		
 		List<WordPair> pairs = this.repo.findWordPairByLanguage1AndLanguage2(sourceLang, targetLang);
 		pairs.addAll(this.repo.findWordPairByLanguage2AndLanguage1(sourceLang, targetLang));
 		
-		// If specific field is set, go through that field's word pairs first
-		if (field != null) {
+		if (field != null) { // If specific field is set, go through that field's word pairs first
 			for (WordPair pair : pairs) {
 				//Using regex with word boundaries
 				text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
 			}
-		}
-				
-		// Replace general word pairs
-		for (WordPair pair : pairs) {
+		}	
+		for (WordPair pair : pairs) { // Replace general word pairs
 			//Using regex with word boundaries
 			text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
 		}
-		
-		HashMap<String, String> response = new HashMap<String, String>();
-		response.put("source", source);
-		response.put("target", text);
-	    return response;
+		return text;
 	}
 }
