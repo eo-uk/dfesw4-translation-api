@@ -1,4 +1,4 @@
-package com.qa.dfesw4translationapi.controllers;
+package com.qa.dfesw4translationapi.main.controllers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.dfesw4translationapi.entities.WordPair;
-import com.qa.dfesw4translationapi.services.WordPairService;
+import com.qa.dfesw4translationapi.main.entities.WordPair;
+import com.qa.dfesw4translationapi.main.services.WordPairService;
 
 
 @RestController

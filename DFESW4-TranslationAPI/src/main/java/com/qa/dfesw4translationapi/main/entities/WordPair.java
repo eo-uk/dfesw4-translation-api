@@ -1,4 +1,4 @@
-package com.qa.dfesw4translationapi.entities;
+package com.qa.dfesw4translationapi.main.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
