@@ -51,6 +51,15 @@ public class WordPairServiceTest {
 		assertThat(expected).isEqualTo(service.getWordById(1));
 	}
 	
+	@Test
+	public void getWordsByField() {
+		WordPair pair = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
+		List<WordPair> expected = new ArrayList<>();
+		expected.add(pair);
+		
+		Mockito.when(repo.findWordPairByField("medical")).thenReturn(expected);
+		assertThat(expected).isEqualTo(service.getWordsByField("medical"));
+	}
 }
 
 
