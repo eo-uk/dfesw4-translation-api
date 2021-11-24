@@ -136,6 +136,25 @@ public class WordPairServiceTest {
 		
 		assertThat(service.searchWords("doctor", "english", "spanish", "medical")).isEqualTo(pairs);
 	}
+	
+	@Test
+	public void translateTextTest() {
+		WordPair pair1 = new WordPair(1, "english", "nurse", "spanish", "enfermero", "medical", "2021-11-24");
+		WordPair pair2 = new WordPair(2, "spanish", "medico", "english", "doctor", "medical", "2021-11-24");
+		WordPair pair3 = new WordPair(1, "spanish", "manzana", "english", "apple", "general", "2021-11-24");
+		WordPair pair4 = new WordPair(2, "spanish", "platano", "english", "banana", "general", "2021-11-24");
+		List<WordPair> pairs1 = new ArrayList<>();
+		pairs1.add(pair1);
+		pairs1.add(pair2);
+		pairs1.add(pair3);
+		pairs1.add(pair4);
+
+		String text = "hello doctor banana";
+		String expected = "hello medico platano";
+		
+		when(service.getWordsByLanguage("english")).thenReturn(pairs1);
+		assertThat(service.translateText(text, "english", "spanish", "medical")).isEqualTo(expected);
+	}
 }
 
 
