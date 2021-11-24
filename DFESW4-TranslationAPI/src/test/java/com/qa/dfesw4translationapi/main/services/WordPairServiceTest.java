@@ -60,6 +60,18 @@ public class WordPairServiceTest {
 		Mockito.when(repo.findWordPairByField("medical")).thenReturn(expected);
 		assertThat(expected).isEqualTo(service.getWordsByField("medical"));
 	}
+	
+	@Test
+	public void getWordsByLanguageTest() {
+		WordPair pair1 = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
+		WordPair pair2 = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
+		List<WordPair> expected = new ArrayList<>();
+		expected.add(pair1);
+		expected.add(pair2);
+		
+		Mockito.when(repo.findWordPairByLanguage1("english")).thenReturn(expected);
+		assertThat(expected).isEqualTo(service.getWordsByLanguage("english"));
+	}
 }
 
 
