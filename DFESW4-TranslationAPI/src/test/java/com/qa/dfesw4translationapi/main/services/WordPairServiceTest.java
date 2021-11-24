@@ -44,7 +44,7 @@ public class WordPairServiceTest {
 	}
 	
 	@Test
-	public void getWordsByFieldTest() {
+	public void getWordsByIdTest() {
 		WordPair expected = new WordPair(1, "english", "tree", "spanish", "arbol", "general", "2021-11-24");
 		
 		Mockito.when(repo.findById(1)).thenReturn(Optional.of(expected));
@@ -52,7 +52,7 @@ public class WordPairServiceTest {
 	}
 	
 	@Test
-	public void getWordsByField() {
+	public void getWordsByFieldTest() {
 		WordPair pair = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
 		List<WordPair> expected = new ArrayList<>();
 		expected.add(pair);
