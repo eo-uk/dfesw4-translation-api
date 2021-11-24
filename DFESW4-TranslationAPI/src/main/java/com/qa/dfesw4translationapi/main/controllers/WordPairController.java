@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.dfesw4translationapi.main.entities.WordPair;
@@ -47,6 +48,17 @@ public class WordPairController {
 	@GetMapping("/words/language/{language}")
 	public List<WordPair> getWordsByLanguage(@PathVariable String language) {
 		return service.getWordsByLanguage(language);
+	}
+	
+	@GetMapping("/words/search")
+	public List<WordPair> getWordsBySearch(
+			@RequestParam String word,
+			@RequestParam(required=false) String sourceLang,
+			@RequestParam(required=false) String targetLang,
+			@RequestParam(required=false) String field,
+			@RequestParam(required=false) String order
+	) {
+		return service.searchWords(word, sourceLang, targetLang, field, order);
 	}
 	
 	@PutMapping("/words/update/{id}")
