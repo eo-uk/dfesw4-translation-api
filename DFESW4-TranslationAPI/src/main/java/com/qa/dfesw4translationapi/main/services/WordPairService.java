@@ -1,14 +1,12 @@
 package com.qa.dfesw4translationapi.main.services;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.entities.WordPairRepository;
@@ -78,7 +76,7 @@ public class WordPairService {
 	}
 	
 	public List<WordPair> searchWords(
-			@RequestParam String word,
+			String word,
 			@Nullable String sourceLang,
 			@Nullable String targetLang,
 			@Nullable String field,
@@ -106,5 +104,30 @@ public class WordPairService {
 			// TODO: Alphabetically (word), Alphabetically (sourceLang), Chronologically, 
 		}
 		return results;
+	}
+	
+	public HashMap<String, String> translateText(
+			String text,
+			@Nullable String field
+	) {
+		String source = text;
+		// If specific field is set, go through that field's word pairs first
+		if (field != null) {
+			for (WordPair pair : this.repo.findWordPairByField(field)) {
+				//Using regex with word boundaries
+				text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
+			}
+		}
+				
+		// Replace general word pairs
+		for (WordPair pair : this.repo.findAll()) {
+			//Using regex with word boundaries
+			text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
+		}
+		
+		HashMap<String, String> response = new HashMap<String, String>();
+		response.put("source", source);
+		response.put("target", text);
+	    return response;
 	}
 }
