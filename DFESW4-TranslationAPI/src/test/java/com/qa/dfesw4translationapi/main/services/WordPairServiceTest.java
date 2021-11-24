@@ -155,6 +155,16 @@ public class WordPairServiceTest {
 		when(service.getWordsByLanguage("english")).thenReturn(pairs1);
 		assertThat(service.translateText(text, "english", "spanish", "medical")).isEqualTo(expected);
 	}
+	
+	@Test
+	public void wordPairToStringTest() {
+		WordPair pair = new WordPair(1, "english", "nurse", "spanish", "enfermero", "medical", "2021-11-24");
+		String expected = "WordPair [id=" + pair.getId() + ", language1=" + pair.getLanguage1()
+		+ ", language1Word=" + pair.getLanguage1Word() + ", language2=" + pair.getLanguage2()
+		+ ", language2Word=" + pair.getLanguage2Word() + "]";
+		
+		assertThat(pair.toString()).isEqualTo(expected);
+	}
 }
 
 
