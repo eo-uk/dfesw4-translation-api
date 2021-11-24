@@ -96,6 +96,16 @@ public class WordPairServiceTest {
 	}
 	
 	@Test
+	public void deleteWordByIdTest() {
+		WordPair pair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
+		repo.save(pair);
+		doNothing().when(repo).deleteById(1);
+		
+		service.deleteWordById(1);
+		assertThat(repo.count()).isEqualTo(0);
+	}
+	
+	@Test
 	public void deleteAllWordsTest() {
 		WordPair pair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
 		repo.save(pair);
