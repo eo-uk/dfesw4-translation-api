@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.entities.WordPairRepository;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -89,9 +90,19 @@ public class WordPairServiceTest {
 	@Test
 	public void createWordTest() {
 		WordPair pair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
-		Mockito.when(repo.save(pair)).thenReturn(pair);
+		when(repo.save(pair)).thenReturn(pair);
 		assertThat(service.createWord(pair)).isEqualTo(pair);
 		verify(this.repo, Mockito.times(1)).save(pair);
+	}
+	
+	@Test
+	public void deleteAllWordsTest() {
+		WordPair pair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
+		repo.save(pair);
+		doNothing().when(repo).deleteAll();
+		
+		service.deleteAllWords();
+		assertThat(repo.count()).isEqualTo(0);
 	}
 }
 
