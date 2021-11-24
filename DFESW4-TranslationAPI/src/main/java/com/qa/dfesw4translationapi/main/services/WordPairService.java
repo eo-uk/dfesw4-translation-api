@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.entities.WordPairRepository;
+import com.qa.dfesw4translationapi.main.exceptions.WordPairNotFoundException;
 
 
 @Service
@@ -19,7 +20,7 @@ public class WordPairService {
 	
 	public WordPair getWordById(int id) {
 		return this.repo.findById(id)
-				.orElseThrow(EntityNotFoundException::new);
+				.orElseThrow(WordPairNotFoundException::new);
 	}
 	
 	public List<WordPair> getAllWords() {
@@ -59,7 +60,7 @@ public class WordPairService {
 						return this.repo.save(pair);
 					}
 				)
-				.orElseThrow(EntityNotFoundException::new);
+				.orElseThrow(WordPairNotFoundException::new);
 		return true;
 	}
 	
