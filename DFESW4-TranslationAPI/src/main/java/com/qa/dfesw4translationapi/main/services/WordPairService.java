@@ -45,9 +45,8 @@ public class WordPairService {
 		return results;
 	}
 	
-	public boolean createWord(WordPair word) {
-		this.repo.save(word);
-		return true;
+	public WordPair createWord(WordPair word) {
+		return this.repo.save(word);
 	}
 	
 	public boolean updateWord( WordPair newWordPair, int id) {
