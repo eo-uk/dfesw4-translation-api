@@ -21,6 +21,7 @@ import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.entities.WordPairRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -90,6 +91,7 @@ public class WordPairServiceTest {
 		WordPair pair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
 		Mockito.when(repo.save(pair)).thenReturn(pair);
 		assertThat(service.createWord(pair)).isEqualTo(pair);
+		verify(this.repo, Mockito.times(1)).save(pair);
 	}
 }
 
