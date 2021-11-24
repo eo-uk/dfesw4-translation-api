@@ -55,10 +55,9 @@ public class WordPairController {
 			@RequestParam String word,
 			@RequestParam(required=false) String sourceLang,
 			@RequestParam(required=false) String targetLang,
-			@RequestParam(required=false) String field,
-			@RequestParam(required=false) String order
+			@RequestParam(required=false) String field
 	) {
-		return service.searchWords(word, sourceLang, targetLang, field, order);
+		return service.searchWords(word, sourceLang, targetLang, field);
 	}
 	
 	@GetMapping("/text/translate")
