@@ -114,6 +114,16 @@ public class WordPairServiceTest {
 		service.deleteAllWords();
 		assertThat(repo.count()).isEqualTo(0);
 	}
+	
+	@Test
+	public void updateWordTest() {
+		WordPair oldPair = new WordPair(1, "english", "doctor", "turkish", "doktor", "medical", "2021-11-24");
+		WordPair newPair = new WordPair(1, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
+		when(repo.findById(1)).thenReturn(Optional.of(oldPair));
+		when(repo.save(oldPair)).thenReturn(oldPair);
+		
+		assertThat(service.updateWord(newPair, 1)).isEqualTo(oldPair);
+	}
 }
 
 

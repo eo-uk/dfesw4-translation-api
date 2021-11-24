@@ -49,8 +49,17 @@ public class WordPairService {
 		return this.repo.save(word);
 	}
 	
-	public boolean updateWord( WordPair newWordPair, int id) {
-		this.repo.findById(id)
+	public WordPair updateWord( WordPair newWordPair, int id) {
+		WordPair pair = this.repo.findById(id).orElseThrow(WordPairNotFoundException::new);
+		pair.setLanguage1(newWordPair.getLanguage1());
+		pair.setLanguage1Word(newWordPair.getLanguage1Word());
+		pair.setLanguage2(newWordPair.getLanguage2());
+		pair.setLanguage2Word(newWordPair.getLanguage2Word());
+		pair.setField(newWordPair.getField());
+		pair.setDateCreated(newWordPair.getDateCreated());
+		this.repo.save(pair);
+		return pair;
+		/*
 				.map(pair -> {
 						pair.setLanguage1(newWordPair.getLanguage1());
 						pair.setLanguage1Word(newWordPair.getLanguage1Word());
@@ -62,7 +71,7 @@ public class WordPairService {
 					}
 				)
 				.orElseThrow(WordPairNotFoundException::new);
-		return true;
+		 */
 	}
 	
 	public boolean deleteWordById(int id) {
