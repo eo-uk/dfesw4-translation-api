@@ -2,6 +2,7 @@ package com.qa.dfesw4translationapi.main.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,15 @@ public class WordPairServiceTest {
 		
 		Mockito.when(repo.findAll()).thenReturn(expected);
 		assertThat(expected).isEqualTo(service.getAllWords());
-	 }
+	}
+	
+	@Test
+	public void getWordsByFieldTest() {
+		WordPair expected = new WordPair(1, "english", "tree", "spanish", "arbol", "general", "2021-11-24");
+		
+		Mockito.when(repo.findById(1)).thenReturn(Optional.of(expected));
+		assertThat(expected).isEqualTo(service.getWordById(1));
+	}
 	
 }
 
