@@ -48,6 +48,7 @@ public class WordPair {
 		this.language2Word = language2Word;
 		this.field = field;
 		this.dateCreated = dateCreated;
+		
 	}
 	
 	public int getId() {
