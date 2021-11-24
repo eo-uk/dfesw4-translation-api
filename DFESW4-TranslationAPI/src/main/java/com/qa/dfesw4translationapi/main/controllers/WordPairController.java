@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.services.WordPairService;
 
-
+// SWAGGER PATHS
+// UI  : http://localhost:8080/swagger-ui.html
+// JSON: http://localhost:8080/v3/api-docs
 @RestController
 @RequestMapping("/api")
 public class WordPairController {
