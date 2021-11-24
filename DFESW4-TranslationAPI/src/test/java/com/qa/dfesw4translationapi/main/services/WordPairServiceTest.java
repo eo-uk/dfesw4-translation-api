@@ -124,6 +124,18 @@ public class WordPairServiceTest {
 		
 		assertThat(service.updateWord(newPair, 1)).isEqualTo(oldPair);
 	}
+	
+	@Test
+	public void searchWordsTest() {
+		WordPair pair1 = new WordPair(1, "english", "nurse", "spanish", "enfermero", "medical", "2021-11-24");
+		WordPair pair2 = new WordPair(2, "english", "doctor", "spanish", "medico", "medical", "2021-11-24");
+		List<WordPair> pairs = new ArrayList<>();
+		pairs.add(pair1);
+		pairs.add(pair2);
+		when(service.getWordsByWord("doctor")).thenReturn(pairs);
+		
+		assertThat(service.searchWords("doctor", "english", "spanish", "medical")).isEqualTo(pairs);
+	}
 }
 
 
