@@ -1,4 +1,4 @@
-package com.qa.dfesw4translationapi.services;
+package com.qa.dfesw4translationapi.main.services;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.dfesw4translationapi.entities.WordPair;
-import com.qa.dfesw4translationapi.entities.WordPairRepository;
+import com.qa.dfesw4translationapi.main.entities.WordPair;
+import com.qa.dfesw4translationapi.main.entities.WordPairRepository;
 
 
 @Service
