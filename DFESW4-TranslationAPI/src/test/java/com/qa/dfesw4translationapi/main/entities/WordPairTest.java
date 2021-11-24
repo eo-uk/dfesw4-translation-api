@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class WordPairTest {
 	
 	@Test
-	public void WordPairTest() {
+	public void WordPairEntityTest() {
 		WordPair pair = new WordPair(1, "english", "tree", "spanish", "arbol", "general", "2021-11-24");
 		
 		String expected = "WordPair [id=" + pair.getId() + ", language1=" + pair.getLanguage1()
