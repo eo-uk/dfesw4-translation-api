@@ -32,7 +32,7 @@ public class WordPair {
 	private String field = "General";
 	
 	@Column
-	private String dateCreated = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+	private String dateCreated = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 	
 	public WordPair() {
 		
