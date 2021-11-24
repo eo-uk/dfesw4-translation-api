@@ -103,14 +103,12 @@ public class WordPairService {
 		return results;
 	}
 	
-	public HashMap<String, String> translateText(
+	public String translateText(
 			String text,
 			String sourceLang,
 			String targetLang,
 			@Nullable String field
 	) {
-		String source = text;
-		
 		List<WordPair> pairs = this.repo.findWordPairByLanguage1AndLanguage2(sourceLang, targetLang);
 		pairs.addAll(this.repo.findWordPairByLanguage2AndLanguage1(sourceLang, targetLang));
 		
@@ -119,16 +117,11 @@ public class WordPairService {
 				//Using regex with word boundaries
 				text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
 			}
-		}
-				
+		}	
 		for (WordPair pair : pairs) { // Replace general word pairs
 			//Using regex with word boundaries
 			text = text.replaceAll("\\b"+pair.getLanguage1Word()+"\\b", pair.getLanguage2Word());
 		}
-		
-		HashMap<String, String> response = new HashMap<String, String>();
-		response.put("source", source);
-		response.put("target", text);
-	    return response;
+		return text;
 	}
 }
