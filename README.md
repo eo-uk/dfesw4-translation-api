@@ -63,6 +63,12 @@ In the future, additional features can be added including a working front-end, u
 ## ERD Diagram
 ![ERD Diagram](documentation/ERD_Diagram.png)
 
+## Postman Screenshots
+[Postman Screenshots](documentation/Postman/)
+
+## MySQL Screenshots
+[MySQL Screenshots](documentation/MySQL/)
+
 ## Swagger Routes
 ![Swagger Routes](documentation/Swagger_Routes.png)
 
