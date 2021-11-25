@@ -70,5 +70,5 @@ In the future, additional features can be added including a working front-end, u
 ![Network Graph Example](documentation/Network_Graph_Example.png)
 
 ## Risk Assessment
-[here](documentation/risk_assessment.pdf)
+[See Risk Assessment](documentation/risk_assessment.pdf)
 
