@@ -56,3 +56,6 @@ In the future, additional features can be added including a working front-end, u
 
 ## Jira Board
 <https://eouk.atlassian.net/jira/software/projects/DFETAPI/boards/2/roadmap>
+
+## Test Coverage
+![Test Coverage](documentation/Test_Coverage.png)
