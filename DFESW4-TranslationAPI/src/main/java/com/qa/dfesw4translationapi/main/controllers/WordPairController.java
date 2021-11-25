@@ -30,8 +30,9 @@ public class WordPairController {
 	private WordPairService service;
 	
 	@GetMapping("/words")
-	public List<WordPair> getAllWords() {
-		return service.getAllWords();
+	public ResponseEntity<List<WordPair>> getAllWords() {
+		return new ResponseEntity<>(service.getAllWords(), HttpStatus.OK);
+		//return service.getAllWords();
 	}
 	
 	@GetMapping("/words/field/{field}")
