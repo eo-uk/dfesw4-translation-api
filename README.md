@@ -59,3 +59,13 @@ In the future, additional features can be added including a working front-end, u
 
 ## Test Coverage
 ![Test Coverage](documentation/Test_Coverage.png)
+
+## ERD Diagram
+![ERD Diagram](documentation/ERD_Diagram.png)
+
+## Swagger Routes
+![Swagger Routes](documentation/Swagger_Routes.png)
+
+## Network Graph Example
+![Network Graph Example](documentation/Network_Graph_Example.png)
+
