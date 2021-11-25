@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qa.dfesw4translationapi.main.entities.WordPair;
 import com.qa.dfesw4translationapi.main.services.WordPairService;
 
-
+// SWAGGER PATHS
+// UI  : http://localhost:8080/swagger-ui.html
+// JSON: http://localhost:8080/v3/api-docs
 @RestController
 @RequestMapping("/api")
 public class WordPairController {
@@ -26,8 +30,9 @@ public class WordPairController {
 	private WordPairService service;
 	
 	@GetMapping("/words")
-	public List<WordPair> getAllWords() {
-		return service.getAllWords();
+	public ResponseEntity<List<WordPair>> getAllWords() {
+		return new ResponseEntity<>(service.getAllWords(), HttpStatus.OK);
+		//return service.getAllWords();
 	}
 	
 	@GetMapping("/words/field/{field}")
@@ -55,10 +60,9 @@ public class WordPairController {
 			@RequestParam String word,
 			@RequestParam(required=false) String sourceLang,
 			@RequestParam(required=false) String targetLang,
-			@RequestParam(required=false) String field,
-			@RequestParam(required=false) String order
+			@RequestParam(required=false) String field
 	) {
-		return service.searchWords(word, sourceLang, targetLang, field, order);
+		return service.searchWords(word, sourceLang, targetLang, field);
 	}
 	
 	@GetMapping("/text/translate")
@@ -68,7 +72,13 @@ public class WordPairController {
 			@RequestParam String targetLang,
 			@RequestParam(required = false) String field
 	) {
-		return service.translateText(text, sourceLang, targetLang, field);
+		String source = text;
+		text = service.translateText(text, sourceLang, targetLang, field);
+
+		HashMap<String, String> response = new HashMap<String, String>();
+		response.put("source", source);
+		response.put("target", text);
+	    return response;
 	}
 	
 	@PutMapping("/words/update/{id}")
@@ -81,9 +91,8 @@ public class WordPairController {
 	}
 	
 	@PostMapping("/words/add")
-	public HashMap<String, String> addWord(@RequestBody WordPair word) {
-		service.createWord(word);
-		return getResponseSuccess();
+	public ResponseEntity<WordPair> addWord(@RequestBody WordPair word) {
+		return new ResponseEntity<>(service.createWord(word), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/words/delete/{id}")
