@@ -60,19 +60,6 @@ public class WordPairService {
 		pair.setDateCreated(newWordPair.getDateCreated());
 		this.repo.save(pair);
 		return pair;
-		/*
-				.map(pair -> {
-						pair.setLanguage1(newWordPair.getLanguage1());
-						pair.setLanguage1Word(newWordPair.getLanguage1Word());
-						pair.setLanguage2(newWordPair.getLanguage2());
-						pair.setLanguage2Word(newWordPair.getLanguage2Word());
-						pair.setField(newWordPair.getField());
-						pair.setDateCreated(newWordPair.getDateCreated());
-						return this.repo.save(pair);
-					}
-				)
-				.orElseThrow(WordPairNotFoundException::new);
-		 */
 	}
 	
 	public boolean deleteWordById(int id) {
